@@ -1,4 +1,6 @@
-# Tamr Enrichment-dashboard - Runs at 10.10.0.214:8050
+# Tamr Enrichment-dashboard
+
+Runs at 10.10.0.214:8050
 
 The goal of this project is to create a dashboard that showcases the benefits of data enrichment, both on the individual/entity level and on the project level. The dashboard is built on Flask. 
 
