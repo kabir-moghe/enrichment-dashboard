@@ -53,7 +53,7 @@
         </ol>
         <p>Use the dropdown below to output an example enriched entity, either for a specific use case or from random selection.</h3>
           <form action="/search" method="post">
-            <select name="company" id="form">
+            <select name="use_case" id="form">
               <option value="random">Random</option>
               <option value="deduplication">Deduplication</option>
               <option value="address_entry">Address Entry</option>
@@ -68,7 +68,7 @@
             <option value= "{{company}}" SELECTED>{{company}}</option>"
             {% endfor %}
 					</datalist>
-          <input class = 'box' autoComplete="on" id = 'company' name = 'company' placeholder = 'Company' list = 'companies'/>
+          <input class = 'box' autoComplete="on" id = 'company' name = 'use_casse' placeholder = 'Company' list = 'companies'/>
           <input class = 'blue-button' type="submit" id = 'submit' name="anything_submit" value = "Search" onClick="return empty()">
         </form>
           <br>
