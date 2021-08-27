@@ -25,15 +25,19 @@ This page displays metrics across the project as a whole. Overview information i
 # Next steps:
 
 1. Framework  
+
 Flask has worked well, but visuals and interactivity will become more difficult to improve beyond a certain point. Next steps could mean shifting to REACT or another alternative framekwork.
 
 2. Metrics
+
 As of now, the metrics page has a fixed set of metrics that will be displayed. A next step could mean making it so that the metrics are calculated and shown depending on how positive they are.
 
 3. Search 
+
 3 use cases for enrichment are limited to address attributes. Though addresses are a good example, expanding to new attributes for use cases could show a broader range of benefits for enrichment.
 
 4. Authentication & Login
+
 Currently, you are by default taken to the login page, but if the matched data set exists, you can go to any other page and bypass authentication
 Creating a session-based framework (through Flask or something else) could ease the process of ensuring authentication before going to other pages
 This would also make multiple users using the app simultaneously easier.
