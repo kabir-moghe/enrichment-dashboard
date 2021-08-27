@@ -191,7 +191,10 @@ def metrics():
 
             num_after = len(data_input) # the number of companies that are from Input after Companies House enrichment
 
-            return '{} Duplicate Record Removed'.format(num_before-num_after)
+            if num_after == 1:
+                return '{} Record Deduplicated'.format(num_before-num_after)
+            else:
+                return '{} Records Deduplicated'.format(num_before-num_after)
 
         dedup = calc_dedup()
 
