@@ -208,7 +208,7 @@ def metrics():
             ch = sum(unfiltered_data[unfiltered_data['source_dataset_name'] == 'companies-house-and-uk-establishments'][col].isna() == False)
 
             if ch > bf:
-                if sf == 0: # if the number of records before are 0, then the column is empty
+                if bf == 0: # if the number of records before are 0, then the column is empty
                     empty.append(col)
                 else: # if the number of records before is not empty but is still less than the number after, then the column is improved
                     improved.append(col)
