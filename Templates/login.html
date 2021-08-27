@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Enrichment Dashboard - Login</title>
+    <script type="text/javascript">
+      function loading() {
+         document.getElementById('loader').style.display = "inline-block";
+      }
+     </script>
+
+    <script type="text/javascript">
+      function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+    </script>
+
+
+  </head>
+  <body>
+    <br>
+    <div class="ncontent">
+      <div style = 'background-color: #FFFFFF; width: 450px; border-radius: 10px; box-shadow: 0px 3px 6px 2px rgba(0, 0, 0, 0.07); padding-left: 25px; padding-right:25px; padding-bottom: 25px'>
+        <p style = 'font-size: 35px'>
+          Authentication
+          <img id="loader" style = 'vertical-align: middle; display: none; max-width: 7%; height: auto;' src=" {{url_for('static', filename = 'loader.gif')}}" alt="Loading...">
+        </p>
+        <form action="" method="post" id = 'auth_form'>
+          <ul class = 'form'>
+            <li>
+              <label>Protocol: </label>  &nbsp;
+              <select id = 'protocol' name="protocol">
+                <option value="http">http</option>
+                <option value="https">https</option>
+              </select>
+            </li>
+            <br>
+            <li>
+              <label>Host:</label> &nbsp;
+              <input class = 'box' id = 'host' name = 'host' placeholder = 'Host' value = '10.20.1.109'>
+            </li>
+            <br>
+            <li>
+              <label>Port:</label> &nbsp;
+              <input class = 'box' id = 'port' name = 'port' placeholder = 'Port' value = '9100'/>
+            </li>
+            <br>
+            <li>
+              <label>Username:</label> &nbsp;
+              <input class = 'box' id = 'username' name = 'username' placeholder = 'Username'/>
+            </li>
+            <br>
+            <li>
+              <label>Password:</label> &nbsp;
+              <input class = 'box' type="password" id = 'password' name = 'password' placeholder = 'Password'/> &nbsp; <input type="checkbox" onclick="myFunction()">Show
+            </li>
+            <br>
+            <li>
+              <label>Project Name:</label> &nbsp;
+              <datalist id="source_datasets">
+                <option value= "Company_Enrichment_UK02.1" SELECTED>Company_Enrichment_UK02.1</option>
+                <option value= "UK02.1_AstraZeneca" SELECTED>UK02.1_AstraZeneca</option>
+                <option value= "UK02.1_Sodexo" SELECTED>UK02.1_Sodexo</option>
+              </datalist>
+              <input autoComplete="on" class = 'box' list = 'source_datasets' id = 'project_name' name = 'project_name' placeholder = 'Project Name'/><br><br>
+            </li>
+            <li>
+              <label>Input Dataset Name: </label>  &nbsp;
+              <select id = 'input' name="input_dataset">
+                <option value="Salesforce Accounts">Salesforce Accounts</option>
+                <option value="Coupa_NewSuppliers.csv">Coupa_NewSuppliers.csv</option>
+                <option value="sodexo_data_july26">sodexo_data_july26</option>
+              </select>
+            </li>
+            <br>
+          </ul>
+          <div style = 'text-align: center;'>
+            <input class = 'blue-button' type="submit" id = 'submit' name="anything_submit" value = "Authenticate" onclick="loading()">
+          </div>
+        </form>
+      </div>
+    </div>
+</html>

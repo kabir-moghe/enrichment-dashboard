@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Enrichment Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <script>
+      $(document).ready(function() {
+          $('td:nth-child(1),th:nth-child(1)').hide();
+          var new_cols = {{ new_cols | tojson }};
+          var improved_cols = {{ improved_cols | tojson }};
+          $('#Table-after tr td').each(function(){
+            if(new_cols.includes($(this).text()))$(this).css({'color':'#6CD793', 'font-weight': 'bold'});
+            if(improved_cols.includes($(this).text()))$(this).css({'color':'#3B7EAC', 'font-weight': 'bold'});
+            if($(this).text() == '--')
+            $(this).css({'text-align': 'center'});
+          $('#Table-before tr td').each(function(){
+            if($(this).text() == '--')
+            $(this).css({'text-align': 'center'});
+          });
+          });
+          });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $("input[name$='tables']").click(function() {
+              var test = $(this).val();
+              $("#Table-" + test).show();
+          });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#radio-two").click(function() {
+            $('html,body').animate({
+                scrollTop: $("#Table-before").offset().top},
+                'fast');
+        });
+      });
+    </script>
+  </head>
+  <body>
+  <div class = 'content' style = 'padding-left: 10px; padding-right:10px;'>
+    <div class="title">
+      <h3>{{type}}</h3>
+    </div>
+  </div>
+  <div class="content">
+    <div class="title">
+        <div id = 'Table-before' class = 'desc' style = 'width: 100%'>
+          <div id = enrich class="switch-field">
+            <input type="radio" id="radio-two" name="tables" value="after" />
+              <label id = 'enrich' for="radio-two">ENRICH</label>
+          </div>
+          <div class="styled-table">
+            {% for item in before%}
+                      {{ item|safe }}
+            {% endfor %}
+          </div>
+        </div>
+        <div id = 'Table-after' class = 'desc' style = 'width: 100%; display: none;'>
+          <img style = 'max-width: 2%; height: auto; vertical-align: middle;' src="{{url_for('static', filename = 'enrichment.svg')}}" alt="Enrichment">
+          <div class="styled-table-top">
+            {% for item in after %}
+                      {{ item|safe }}
+            {% endfor %}
+          </div>
+          <div class = 'ncontent'>
+            <div style = 'width: 100px;'>
+              <p><span class="dot" style = 'height: 11px; width: 11px; background-color: #6CD793; border-radius: 50%; display: inline-block;'></span>&nbsp;&nbsp;New Data</p>
+              <p><span class="dot" style = 'height: 11px; width: 11px; background-color: #3B7EAC; border-radius: 50%; display: inline-block;'></span>&nbsp;&nbsp;Improved Data</p>
+            </div>
+          </div>
+    </div>
+  </div>
+  </body>
+</html>

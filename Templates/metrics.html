@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Enrichment Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#matches").click(function() {
+          $("#main_metrics").toggle();
+          $("#all_detailed_metrics").toggle();
+          $("#detailed_matches").show();
+          $("#revert").toggle();
+          $("#blank").toggle();
+
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#dedup").click(function() {
+          $("#main_metrics").toggle();
+          $("#all_detailed_metrics").toggle();
+          $("#detailed_dedup").show();
+          $("#revert").toggle();
+          $("#blank").toggle();
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#new_columns").click(function() {
+          $("#main_metrics").toggle();
+          $("#all_detailed_metrics").toggle();
+          $("#detailed_new_columns").show();
+          $("#revert").toggle();
+          $("#blank").toggle();
+
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#improved_columns").click(function() {
+          $("#main_metrics").toggle();
+          $("#all_detailed_metrics").toggle();
+          $("#detailed_improved_columns").show();
+          $("#revert").toggle();
+          $("#blank").toggle();
+
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#status").click(function() {
+          $("#main_metrics").toggle();
+          $("#all_detailed_metrics").toggle();
+          $("#detailed_status").show();
+          $("#revert").toggle();
+          $("#blank").toggle();
+
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#sic").click(function() {
+          $("#main_metrics").toggle();
+          $("#all_detailed_metrics").toggle();
+          $("#detailed_sic").show();
+          $("#revert").toggle();
+          $("#blank").toggle();
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#revert_btn").click(function() {
+          $("#main_metrics").toggle();
+          $("#all_detailed_metrics").toggle();
+          $("#detailed_matches").hide();
+          $("#detailed_dedup").hide();
+          $("#detailed_new_columns").hide();
+          $("#detailed_improved_columns").hide();
+          $("#detailed_status").hide();
+          $("#detailed_sic").hide();
+          $("#revert").toggle();
+          $("#blank").toggle();
+
+        });
+      });
+    </script>
+</head>
+  <body>
+    <div class="head">
+      <ul>
+        <li class = 'nav'>
+          <a href="/search">
+          <svg class = 'head' version="1.1" viewBox="0.0 0.0 324.0 398.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l324.0 0l0 398.0l-324.0 0l0 -398.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l324.0 0l0 398.0l-324.0 0z" fill-rule="evenodd"/><path fill="#858585" d="m81.32284 37.0l161.35434 0l0 0c9.923691 0 19.440933 3.9421692 26.458023 10.959282c7.0171204 7.017109 10.95929 16.534348 10.95929 26.458038l0 37.417328c0 0.001083374 -8.8500977E-4 0.0019683838 -0.001953125 0.0019683838l-236.18701 -0.0019683838l0 0c-0.001083374 0 -0.001964569 -8.8500977E-4 -0.001964569 -0.0019683838l0.001964569 -37.41536l0 0c0 -20.665012 16.752308 -37.41732 37.417328 -37.41732z" fill-rule="evenodd"/><path fill="#858585" d="m43.90551 122.69029l112.91338 0l0 91.842514l-112.91338 0z" fill-rule="evenodd"/><path fill="#858585" d="m167.1811 122.69029l112.913376 0l0 91.842514l-112.913376 0z" fill-rule="evenodd"/><path fill="#858585" d="m156.8189 317.02887l-77.905396 0l0 0c-9.284691 0 -18.189114 -3.688324 -24.754383 -10.253601c-6.5652733 -6.565277 -10.253605 -15.469696 -10.253605 -24.754395l0 -56.64554l112.91338 0z" fill-rule="evenodd"/><path fill="#858585" d="m167.1811 317.042l77.905396 0l0 0c9.2846985 0 18.189102 -3.688324 24.75438 -10.253601c6.565277 -6.565277 10.253601 -15.469696 10.253601 -24.754395l0 -56.64554l-112.913376 0z" fill-rule="evenodd"/></g></svg>
+          Search
+          </a>
+        </li>
+        <li class = 'nav'>
+          <a href="/metrics">
+            <svg class = 'head' version="1.1" viewBox="0.0 0.0 324.0 398.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l324.0 0l0 398.0l-324.0 0l0 -398.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l324.0 0l0 398.0l-324.0 0z" fill-rule="evenodd"/><path fill="#858585" d="m50.98163 157.30971l57.921257 0l0 137.13387l-57.921257 0z" fill-rule="evenodd"/><path fill="#858585" d="m128.0105 44.774277l57.921265 0l0 249.6693l-57.921265 0z" fill-rule="evenodd"/><path fill="#858585" d="m205.03937 105.18636l57.921265 0l0 189.25983l-57.921265 0z" fill-rule="evenodd"/></g></svg>
+            Metrics
+          </a>
+        </li>
+      </ul>
+    </div>
+    <br>
+    <div class="ncontent">
+      <div class="detailed_metric">
+        <p class = 'metric' style = 'text-align: center;'>Enrichment Metrics: {{project_name}}</p>
+        <p class = 'metric' style = 'font-size: 30px; text-align: center;'><!--{{unfiltered_dim_rows}} Records &nbsp;&nbsp;
+        <img style = 'max-width: 1%; height: auto; vertical-align: middle;' src="{{url_for('static', filename = 'right.png')}}" alt="down">&nbsp;&nbsp;-->
+        {{a_dim_rows}} Records, {{total_after}} Enriched Entities
+        </p>
+        <div class = 'ncontent'>
+          <div style = 'width: 300px;'>
+            <p style = 'font-size: 19px;'><span class="dot" style = 'height: 17.5px; width: 17.5px; background-color: #6fa8dcff; border-radius: 50%; display: inline-block; vertical-align: middle;'></span>&nbsp;&nbsp;{{input_dataset}}</p>
+            <p style = 'font-size: 19px'><span class="dot" style = 'height: 17.5px; width: 17.5px; background-color: #ffd966ff; border-radius: 50%; display: inline-block; vertical-align: middle;'></span>&nbsp;&nbsp;Matched Companies House Record</p>
+          </div>
+        </div>
+        <p style = 'text-align: center; margin-bottom: 0px'>
+          <img style = 'max-width: 60%; height: auto' src="{{url_for('static', filename = 'pipeline.png')}}" alt="Pipeline">
+        </p>
+        <p class = 'additional_info' style = 'margin-left: 360px; color: #000000'>
+          {{unfiltered_dim_rows}} Records
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          {{a_dim_rows}} Matched Records
+        </p>
+        <div id = 'revert' style = 'display: none; text-align: center'>
+          <button class = 'back-button' type="button" name="button" id = 'revert_btn'>Back</button>
+        </div>
+      </div>
+    </div>
+    <div class="ncontent" id = 'main_metrics' style = 'padding-left: 10px; padding-right: 10px;'>
+      <div class="grid-container">
+        <button class = 'metrics' type="button" name="button" id = 'matches'>
+          <div class="grid-item">
+              <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{pct_matched}}
+                <br>
+                <span class = 'additional_info'>With Companies House</span>
+              </p>
+              <img style = 'max-width: 40%; height: auto; float: right;' src="{{url_for('static', filename = project_name+'matched.png')}}" alt="matches"></p>
+          </div>
+        </button>
+        <button class = 'metrics' type="button" name="button" id = 'dedup'>
+          <div class="grid-item">
+              <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{num_dedup}}
+                <br>
+                <span class = 'additional_info'>Removed through Enrichment</span>
+              </p>
+          </div>
+        </button>
+        <button class = 'metrics' type="button" name="button" id = 'new_columns'>
+          <div class="grid-item">
+            <p style =  'color: #4687AD; display: inline-block; vertical-align: middle;' class = 'metric'>{{num_new_cols}} New Fields
+              <br>
+              <span class = 'additional_info'>{{sample_new_cols}}</span>
+            </p>
+          </div>
+        </button>
+        <button class = 'metrics' type="button" name="button" id = 'improved_columns'>
+          <div class="grid-item">
+            <p style =  'color: #4687AD; display: inline-block; vertical-align: middle;' class = 'metric'>{{num_improved_cols}} Improved Fields
+              <br>
+              <span class = 'additional_info'>{{sample_improved_cols}}</span>
+            </p>
+          </div>
+        </button>
+        <button class = 'metrics' type="button" name="button" id = 'status'>
+          <div class="grid-item">
+              <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{with_status}}
+                <br>
+                <span class = 'additional_info'>Added Through Enrichment</span>
+              </p>
+              <img style = 'max-width: 40%; height: auto; float: right;' src="{{url_for('static', filename = project_name+'status.png')}}" alt="status"></p>
+          </div>
+        </button>
+        <button class = 'metrics' type="button" name="button" id = 'sic'>
+        <div class="grid-item">
+          <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{sic_after}}
+            <br>
+            <span class = 'additional_info'>Added Though Enrichment</span>
+          </p>
+          <img style = 'max-width: 40%; height: auto; float: right;' src="{{url_for('static', filename = project_name+'sic_after.png')}}" alt="sic_after"></p>
+        </div>
+      </button>
+      </div>
+    </div>
+    <div id = 'all_detailed_metrics' style = 'display: none;'>
+      <div class="ncontent" id = 'detailed_matches' style = 'display: none;'>
+        <div class="detailed_metric">
+          <div class="float-child-l" style = 'text-align: center;'>
+            <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{pct_matched}}
+              <br>
+              <span class = 'additional_info'>With Companies House Records</span>
+            </p>
+            <br>
+            <img style = 'max-width: 40%; height: auto;' src="{{url_for('static', filename = project_name+'matched.png')}}" alt="matched">
+          </div>
+          <div class="float-child-r" style = 'text-align: center; padding-top: 20px;'>
+            <p>{{num_dedup}}
+              <br>
+              <br>
+              <br>
+            </p>
+            <p>
+            {{unmatched_before}}
+            <span class = 'additional_info' style = 'vertical-align: middle; '> Input Entites</span>
+            <br> <br>
+            <img style = 'max-width: 10%; height: auto; vertical-align: middle;' src="{{url_for('static', filename = 'down.png')}}" alt="down_arrow"> <br> <br>
+            {{total_after}}
+            <span class = 'additional_info' style = 'vertical-align: middle; '> Unique Matched Entities</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="ncontent" id = 'detailed_dedup' style = 'display: none;'>
+        <div class="detailed_metric">
+          <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{num_dedup}}
+            <br>
+            <span class = 'additional_info'>Through deduplication, {{total_after}} entities have a single, clean enriched record. </span>
+          </p>
+        </div>
+      </div>
+      <div class="ncontent" id = 'detailed_new_columns' style = 'display: none;'>
+        <div class="detailed_metric">
+          <p style =  'color: #4687AD; display: inline-block; vertical-align: middle;' class = 'metric'>{{num_new_cols}} New Fields <br>
+            <span class = 'additional_info'>{{num_new_cols}} entirely new fields were added{{new_added_detail}}</span>
+          </p>
+
+            <ol style = 'font-size: 20px; font-weight: 400; color: #B3B8BE;'>
+            {% for col in new_cols %}
+              <li>{{ col }}</li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+      <div class="ncontent" id = 'detailed_improved_columns' style = 'display: none;'>
+        <div class="detailed_metric">
+          <p style =  'color: #4687AD; display: inline-block; vertical-align: middle;' class = 'metric'>{{num_improved_cols}} Improved Fields <br>
+            <span class = 'additional_info'>{{num_improved_cols}} fields were improved{{improved_added_detail}}</span>
+          </p>
+
+            <ol style = 'font-size: 20px; font-weight: 400; color: #B3B8BE;'>
+            {% for col in improved_cols %}
+              <li>{{ col }}</li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+      <div class="ncontent" id = 'detailed_status' style = 'display: none;'>
+        <div class="detailed_metric">
+          <div class="float-child-l" style = 'text-align: center; '>
+            <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{with_status}}
+              <br>
+              <span class = 'additional_info'>(Current Entity Status)</span>
+            </p>
+            <br>
+            <img style = 'max-width: 50%; height: auto;' src="{{url_for('static', filename = project_name+'status.png')}}" alt="status">
+          </div>
+          <div class="float-child-r" style = 'padding-top: 20px; text-align: center;'>
+            <p style = 'display: inline-block; vertical-align: middle;'>Status Breakdown</p>
+            <div class = 'plotly'>
+              {% include project_name+'top_status.html' %}
+            </div>
+          </p>
+          </div>
+        </div>
+      </div>
+      <div class="ncontent" id = 'detailed_sic' style = 'display: none;'>
+        <div class="detailed_metric">
+            <div class="float-child-l" style = 'text-align: center; '>
+              <p style = 'display: inline-block; vertical-align: middle;' class = 'metric'>{{sic_after}}
+                <br>
+                <span class = 'additional_info'>(Information on Standard Industrial Classification)</span>
+              </p>
+              <br>
+              <img style = 'max-width: 50%; height: auto;' src="{{url_for('static', filename = project_name+'sic_after.png')}}" alt="sic_after">
+            </div>
+            <div class="float-child-r" style = 'padding-top: 20px; text-align: center;'>
+              <p style = 'display: inline-block; vertical-align: middle;'>SIC Breakdown</p>
+              <div class = 'plotly'>
+                {% include project_name+'top_sic.html' %}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </body>
+</html>

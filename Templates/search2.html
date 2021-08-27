@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Enrichment Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript">
+      function empty() {
+          var companies = {{ companies | tojson }};
+          var x;
+          x = document.getElementById("company").value;
+          if (companies.includes(x) == false) {
+              alert('Include a valid entity name');
+              return false;
+          };
+      }
+    </script>
+    <script type="text/javascript">
+      document.getElementById('form').value = "<?php echo $_GET['form'];?>";
+    </script>
+  </head>
+  <body>
+    <div class="head">
+      <ul>
+        <li class = 'nav'>
+          <a href="/search">
+          <svg class = 'head' version="1.1" viewBox="0.0 0.0 324.0 398.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l324.0 0l0 398.0l-324.0 0l0 -398.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l324.0 0l0 398.0l-324.0 0z" fill-rule="evenodd"/><path fill="#858585" d="m81.32284 37.0l161.35434 0l0 0c9.923691 0 19.440933 3.9421692 26.458023 10.959282c7.0171204 7.017109 10.95929 16.534348 10.95929 26.458038l0 37.417328c0 0.001083374 -8.8500977E-4 0.0019683838 -0.001953125 0.0019683838l-236.18701 -0.0019683838l0 0c-0.001083374 0 -0.001964569 -8.8500977E-4 -0.001964569 -0.0019683838l0.001964569 -37.41536l0 0c0 -20.665012 16.752308 -37.41732 37.417328 -37.41732z" fill-rule="evenodd"/><path fill="#858585" d="m43.90551 122.69029l112.91338 0l0 91.842514l-112.91338 0z" fill-rule="evenodd"/><path fill="#858585" d="m167.1811 122.69029l112.913376 0l0 91.842514l-112.913376 0z" fill-rule="evenodd"/><path fill="#858585" d="m156.8189 317.02887l-77.905396 0l0 0c-9.284691 0 -18.189114 -3.688324 -24.754383 -10.253601c-6.5652733 -6.565277 -10.253605 -15.469696 -10.253605 -24.754395l0 -56.64554l112.91338 0z" fill-rule="evenodd"/><path fill="#858585" d="m167.1811 317.042l77.905396 0l0 0c9.2846985 0 18.189102 -3.688324 24.75438 -10.253601c6.565277 -6.565277 10.253601 -15.469696 10.253601 -24.754395l0 -56.64554l-112.913376 0z" fill-rule="evenodd"/></g></svg>
+          Search
+          </a>
+        </li>
+        <li class = 'nav'>
+          <a href="/metrics">
+            <svg class = 'head' version="1.1" viewBox="0.0 0.0 324.0 398.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l324.0 0l0 398.0l-324.0 0l0 -398.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l324.0 0l0 398.0l-324.0 0z" fill-rule="evenodd"/><path fill="#858585" d="m50.98163 157.30971l57.921257 0l0 137.13387l-57.921257 0z" fill-rule="evenodd"/><path fill="#858585" d="m128.0105 44.774277l57.921265 0l0 249.6693l-57.921265 0z" fill-rule="evenodd"/><path fill="#858585" d="m205.03937 105.18636l57.921265 0l0 189.25983l-57.921265 0z" fill-rule="evenodd"/></g></svg>
+            Metrics
+          </a>
+        </li>
+      </ul>
+    </div>
+    <br>
+    <div class="ncontent" style = 'padding-left: 10px; padding-right:10px; padding-bottom:15px;'>
+      <div class="title" style = 'background-color: #FFFFFF; border-radius: 10px; box-shadow: 0px 3px 6px 2px rgba(0, 0, 0, 0.07); padding-left: 25px; padding-right: 25px; padding-bottom:5px;'>
+        <p> <span style = 'font-size: 32px'>Enriched Entity Search: {{project_name}}</span> <br><br>
+        Tamr's enrichment service matches source data with external data sources such as Companies House to add to and improve the original data. Using the interface below, explore the benefits of enrichment for an entity's address information with 3 specific use cases.</p>
+        <ol>
+          <li><span style = 'color: #29384C; font-weight: 600;'>Deduplication:</span> duplicated records for an entity are narrowed to a single record</li>
+          <li><span style = 'color: #29384C; font-weight: 600;'>Address Entry:</span> empty address data has information added</li>
+          <li><span style = 'color: #29384C; font-weight: 600;'>Address Improvement:</span> ambiguous address data is improved</li>
+        </ol>
+        <p>Use the dropdown below to output an example enriched entity, either for a specific use case or from random selection.</h3>
+          <form action="/search" method="post">
+            <select name="company" id="form">
+              <option value="random">Random</option>
+              <option value="deduplication">Deduplication</option>
+              <option value="address_entry">Address Entry</option>
+              <option value="address_improvement">Address Improvement</option>
+            </select>
+            <input class = 'blue-button' type="submit" id = 'dropdown' name="anything_submit" value = "Search">
+          </form>
+        <p>Or, search for a specific enriched entity.</h3>
+        <form action="/search" method="post">
+          <datalist id="companies">
+            {% for company in companies %}
+            <option value= "{{company}}" SELECTED>{{company}}</option>"
+            {% endfor %}
+					</datalist>
+          <input class = 'box' autoComplete="on" id = 'company' name = 'company' placeholder = 'Company' list = 'companies'/>
+          <input class = 'blue-button' type="submit" id = 'submit' name="anything_submit" value = "Search" onClick="return empty()">
+        </form>
+          <br>
+          <button class = 'clear-button' onclick="location.href = '/search';">Clear</button>
+          <div id = 'results'>
+            {% include 'result.html' %}
+          </div>
+          <!--
+          <h3>Choose an example for a random company, deduplicated company, company with address entered, or company with address improvement</h3>
+          <form action="#" method="post">
+            <select name="options" id="form">
+              <option value="random">Random</option>
+              <option value="deduplication">Deduplication</option>
+              <option value="address_entry">Address Entry</option>
+              <option value="address_improvement">Address Improvement</option>
+            </select>
+            <input type="submit" id = 'results' name="anything_submit" value = "Enter">
+          </form>
+        -->
+      </div>
+    </div>
+  </body>
+</html>
